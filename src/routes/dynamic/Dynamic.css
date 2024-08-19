@@ -1,0 +1,41 @@
+.dynamic-car-info-img {
+    position: relative;
+    width: 492px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(53, 99, 233, 1);
+    border-radius: 10px;
+    padding: 20px 30px;
+}
+
+.dynamic-car-info-img h2 {
+    width: 372px;
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: -0.03em;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+}
+
+.dynamic-car-info-img p {
+    width: 284px;
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+}
+
+.dynamic-car-info-img img {
+    position: absolute;
+    width: 380px;
+    transform: scaleX(-1);
+    top: 150px;
+    left: 50px;
+}

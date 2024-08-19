@@ -1,0 +1,94 @@
+footer {
+    background-color: white;
+    padding: 50px;
+}
+
+.footer_div1 {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(19, 19, 19, 0.16);
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.footer_title h2 {
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: -0.03em;
+    text-align: left;
+    color: rgba(53, 99, 233, 1);
+    margin-bottom: 20px;
+}
+
+.footer_title h4 {
+    width: 280px;
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: rgba(19, 19, 19, 0.6);
+}
+
+.footer_links {
+    display: flex;
+    gap: 90px;
+}
+
+.footer_links h2 {
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    margin-bottom: 15px;
+}
+
+.footer_links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer_links ul li {
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: rgba(19, 19, 19, 0.6);
+}
+
+.footer_div2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 0px;
+}
+
+.footer_div2 div {
+    display: flex;
+    gap: 60px;
+}
+
+.footer_div2 p {
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: rgba(26, 32, 44, 1);
+}
+
+.footer_div2 h4 {
+    font-family: "Plus Jakarta Sans" sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: rgba(26, 32, 44, 1);
+}
