@@ -2,6 +2,8 @@ import "./Home.css";
 import Cars from "../../components/cars/Cars";
 import { useGetCarsQuery } from "../../redux/api/car-api";
 import Container from "../../components/container/Container";
+import Mark from "../../images/mark.png";
+import Swap from "../../images/Swap.png";
 
 const Home = () => {
     const { data, isLoading } = useGetCarsQuery();
@@ -49,6 +51,51 @@ const Home = () => {
                             width={350}
                             height={120}
                         />
+                    </div>
+                </div>
+                <div className="flex justify-between items-center">
+                    <div className="pickup">
+                        <div className="flex gap-1 items-center w-full ml-10">
+                            <img src={Mark} alt="" />
+                            <h3 className="pickup-title">Pick-Up</h3>
+                        </div>
+                        <div className="flex gap-20">
+                            <div>
+                                <h3>Locations</h3>
+                                <p>Select your city</p>
+                            </div>
+                            <div>
+                                <h3>Date</h3>
+                                <p>Select your date</p>
+                            </div>
+                            <div>
+                                <h3>Time</h3>
+                                <p>Select your Time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="change">
+                        <img src={Swap} alt="" />
+                    </div>
+                    <div className="dropOff">
+                        <div className="flex gap-1 items-center w-full ml-10">
+                            <img src={Mark} alt="" />
+                            <h3 className="pickup-title">Pick-Up</h3>
+                        </div>
+                        <div className="flex gap-20">
+                            <div>
+                                <h3>Locations</h3>
+                                <p>Select your city</p>
+                            </div>
+                            <div>
+                                <h3>Date</h3>
+                                <p>Select your date</p>
+                            </div>
+                            <div>
+                                <h3>Time</h3>
+                                <p>Select your Time</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <Cars
