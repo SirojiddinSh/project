@@ -10,13 +10,15 @@ const Dynamic = () => {
         selectProductById(state, id)
     );
 
+    console.log(product);
+
     return (
         <div className="flex">
             <div className="w-[360px] h-[2016px] bg-white"></div>
             <div>
                 <div className="border-[1px] ">
                     {product ? (
-                        <div>
+                        <div className="flex">
                             <div className="dynamic-car-info-img">
                                 <h2>
                                     Sports car with the best design and
@@ -28,9 +30,14 @@ const Dynamic = () => {
                                 </p>
                                 <img src={product.thumbnail} alt="" />
                             </div>
-                            <h1>{product.name}</h1>
-                            <p>{product.fuel}</p>
-                            <p>{product.price}</p>
+                            <div>
+                                <h2>{product.name}</h2>
+                                <div>
+                                    <p>440+ Reviewer</p>
+                                </div>
+                                <h3>{product.description}</h3>
+                                <div></div>
+                            </div>
                         </div>
                     ) : (
                         <p>Mahsulot topilmadi</p>
