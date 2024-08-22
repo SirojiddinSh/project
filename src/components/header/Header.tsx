@@ -39,18 +39,15 @@ const Cars = () => {
                     </div>
                 </div>
                 <div className="flex gap-5">
-                    <div
-                        onClick={tokenCreate}
-                        className="header-links cursor-pointer"
-                    >
+                    <div onClick={tokenCreate} className=" cursor-pointer">
                         <img src={Heart} alt="" />
                     </div>
-                    <div className="header-links cursor-pointer">
+                    <div className=" cursor-pointer">
                         <img src={Notification} alt="" />
                     </div>
                     <div
                         onClick={navigateToSetting}
-                        className="header-links cursor-pointer"
+                        className=" cursor-pointer"
                     >
                         <img src={Setting} alt="" />
                     </div>
