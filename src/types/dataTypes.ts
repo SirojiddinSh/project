@@ -34,7 +34,22 @@ export type Car = {
     usage_per_km: number,
 }
 
+export type Category = {
+    _id: string,
+    name: string,
+    image: string,
+    status: string,
+    createdAt: string,
+    updatedAt: string,
+    __v: number
+}
+
 export type FetchCar = {
     message: string,
     payload: Car[]
+}
+
+export type FetchCategory = {
+    message: string,
+    payload: Category[]
 }

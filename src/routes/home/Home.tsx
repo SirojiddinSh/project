@@ -80,7 +80,7 @@ const Home = () => {
                     <div className="dropOff">
                         <div className="flex gap-1 items-center w-full ml-10">
                             <img src={Mark} alt="" />
-                            <h3 className="pickup-title">Pick-Up</h3>
+                            <h3 className="pickup-title">Drop-Off</h3>
                         </div>
                         <div className="flex gap-20">
                             <div>

@@ -4,8 +4,17 @@ import Filter from "../../images/filter.png";
 import Heart from "../../images/heart.png";
 import Notification from "../../images/notification.png";
 import Setting from "../../images/setting.png";
+import { useNavigate } from "react-router-dom";
 
 const Cars = () => {
+    const navigate = useNavigate();
+    const navigateToSetting = () => {
+        navigate("/dashboard/create");
+    };
+
+    const tokenCreate = () => {
+        localStorage.setItem("token", "wkhIkSKookwo88u-USjimks");
+    };
     return (
         <div className="w-full flex justify-center bg-white border-b-[1px]">
             <nav className=" max-w-[1500px] h-[125px] w-full flex justify-between items-center px-5 ">
@@ -30,13 +39,19 @@ const Cars = () => {
                     </div>
                 </div>
                 <div className="flex gap-5">
-                    <div className="header-links cursor-pointer">
+                    <div
+                        onClick={tokenCreate}
+                        className="header-links cursor-pointer"
+                    >
                         <img src={Heart} alt="" />
                     </div>
                     <div className="header-links cursor-pointer">
                         <img src={Notification} alt="" />
                     </div>
-                    <div className="header-links cursor-pointer">
+                    <div
+                        onClick={navigateToSetting}
+                        className="header-links cursor-pointer"
+                    >
                         <img src={Setting} alt="" />
                     </div>
                     <img
