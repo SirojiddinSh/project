@@ -21,18 +21,12 @@ const Register = () => {
                     }),
                 }
             );
-
             const data = await response.json();
-
             console.log(data);
 
-            if (data?.payload && data?.payload?.status) {
-                navigate("/dashboard/create");
-            } else {
-                console.log("No token received in response.");
-            }
+            navigate("/auth/otp");
         } catch (error) {
-            console.log("Error:", error);
+            console.log("Xato yuz berdi:", error);
         }
 
         form.resetFields();

@@ -35,7 +35,32 @@
 .dynamic-car-info-img img {
     position: absolute;
     width: 380px;
-    transform: scaleX(-1);
     top: 150px;
     left: 50px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    color: gold;
+}
+
+.dynamic-car-info-img img {
+    width: 100%;
+    height: auto;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.overflow-x-auto img {
+    display: inline-block;
 }

@@ -6,6 +6,7 @@ import Register from "./auth/register/Register";
 import Auth from "./auth/Auth";
 import Private from "../private/Private";
 import Create from "./dashboard/create/Create";
+import OTP from "./auth/otp/OTP";
 
 const RouteController = () => {
     const token = localStorage.getItem("token");
@@ -30,6 +31,10 @@ const RouteController = () => {
                 {
                     path: "register",
                     element: <Register />,
+                },
+                {
+                    path: "otp",
+                    element: <OTP />,
                 },
             ],
         },

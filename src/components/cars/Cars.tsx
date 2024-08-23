@@ -4,8 +4,6 @@ import gasStation from "../../images/gas-station.png";
 import CarImg from "../../images/Car.png";
 import Users from "../../images/profile-2user.png";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setProducts } from "../../redux/slices/products-slice";
 
 type Props = {
     title: string;
@@ -14,10 +12,9 @@ type Props = {
 };
 
 const Cars = ({ data, title, isLoading }: Props) => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const moveToSingle = (car: Car) => {
-        dispatch(setProducts([car]));
+        localStorage.setItem("car", JSON.stringify(car));
         navigate(`/cars/${car._id}`);
         window.scrollTo(0, 0);
     };
