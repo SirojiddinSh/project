@@ -5,7 +5,7 @@ const Register = () => {
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
-    const onFinish = async (values) => {
+    const onFinish = async (values: any) => {
         try {
             const response = await fetch(
                 "http://13.51.206.62:8000/api/auth/sign-up",
@@ -32,7 +32,7 @@ const Register = () => {
         form.resetFields();
     };
 
-    const onFinishFailed = (errorInfo) => {
+    const onFinishFailed = (errorInfo: any) => {
         console.log("Failed:", errorInfo);
     };
 

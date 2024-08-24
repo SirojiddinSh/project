@@ -65,16 +65,7 @@ const Create = () => {
         },
         {
             id: 3,
-            content: () => (
-                // current: number,
-                // handleNext: () => void,
-                // handleBack: () => void
-                <CheckIn
-                // current={current}
-                // handleNext={handleNext}
-                // handleBack={handleBack}
-                />
-            ),
+            content: () => <CheckIn />,
         },
     ];
 

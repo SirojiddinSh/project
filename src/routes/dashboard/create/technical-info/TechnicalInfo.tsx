@@ -1,9 +1,8 @@
 import {
     Form,
     FormProps,
-    UploadFile,
-    UploadProps,
-    Upload,
+    // UploadFile,
+    // UploadProps,
     Image,
     Input,
     InputNumber,
@@ -25,25 +24,25 @@ const getBase64 = (file: FileType): Promise<string> =>
 const TechnicalInfo = ({ current, handleNext, handleBack }: Props) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
+    // const [fileList, setFileList] = useState<UploadFile[]>([]);
 
-    const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-        setFileList(newFileList);
+    // const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
+    //     setFileList(newFileList);
 
-    const handlePreview = async (file: UploadFile) => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj as FileType);
-        }
+    // const handlePreview = async (file: UploadFile) => {
+    //     if (!file.url && !file.preview) {
+    //         file.preview = await getBase64(file.originFileObj as FileType);
+    //     }
 
-        setPreviewImage(file.url || (file.preview as string));
-        setPreviewOpen(true);
-    };
+    //     setPreviewImage(file.url || (file.preview as string));
+    //     setPreviewOpen(true);
+    // };
 
-    const uploadButton = (
-        <button style={{ border: 0, background: "none" }} type="button">
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </button>
-    );
+    // const uploadButton = (
+    //     <button style={{ border: 0, background: "none" }} type="button">
+    //         <div style={{ marginTop: 8 }}>Upload</div>
+    //     </button>
+    // );
 
     type FieldType = {
         engine?: string;

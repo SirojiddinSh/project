@@ -6,7 +6,7 @@ const Otp = () => {
     const [form] = Form.useForm();
     const [otpValue, setOtpValue] = useState("");
 
-    const onFinish = async (values) => {
+    const onFinish = async () => {
         try {
             const response = await fetch(
                 "http://localhost:8000/api/auth/resend-otp",
@@ -35,7 +35,7 @@ const Otp = () => {
         }
     };
 
-    const onFinishFailed = (errorInfo) => {
+    const onFinishFailed = (errorInfo: any) => {
         console.log(errorInfo);
     };
 

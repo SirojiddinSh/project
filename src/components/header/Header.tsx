@@ -38,7 +38,7 @@ const Cars = () => {
                         />
                     </div>
                 </div>
-                <div className="flex gap-5">
+                <div className="flex gap-5 items-center">
                     <div onClick={tokenCreate} className="cursor-pointer">
                         <img src={Heart} alt="" />
                     </div>

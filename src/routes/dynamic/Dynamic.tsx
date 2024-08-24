@@ -65,19 +65,21 @@ const Dynamic = () => {
                                     <div className="overflow-x-auto flex gap-2">
                                         {product?.images
                                             .slice(0, 3)
-                                            .map((image, index) => (
-                                                <img
-                                                    className="w-[148px] h-[124px] border-r-[10px] rounded-[10px] cursor-pointer"
-                                                    key={index}
-                                                    src={image}
-                                                    alt={`Image ${index}`}
-                                                    onClick={() =>
-                                                        setCurrentThumbnail(
-                                                            image
-                                                        )
-                                                    }
-                                                />
-                                            ))}
+                                            .map(
+                                                (image: any, index: number) => (
+                                                    <img
+                                                        className="w-[148px] h-[124px] border-r-[10px] rounded-[10px] cursor-pointer"
+                                                        key={index}
+                                                        src={image}
+                                                        alt={`Image ${index}`}
+                                                        onClick={() =>
+                                                            setCurrentThumbnail(
+                                                                image
+                                                            )
+                                                        }
+                                                    />
+                                                )
+                                            )}
                                     </div>
                                 </div>
                                 <div className="max-w-[492px] w-full h-[510px] flex flex-col p-4 bg-white">

@@ -53,13 +53,13 @@ const VisualInfo = ({ current, handleNext, handleBack }: Props) => {
         price?: number;
     };
 
-    const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    const onFinish: FormProps<FieldType>["onFinish"] = (values: FieldType) => {
         handleNext();
         console.log(values);
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-        errorInfo
+        errorInfo: any
     ) => {
         console.log("Failed:", errorInfo);
     };

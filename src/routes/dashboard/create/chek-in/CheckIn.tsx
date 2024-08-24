@@ -1,5 +1,5 @@
 const CheckIn = () => {
-    return <div>karochi tugadi</div>;
+    return <div> tugadi</div>;
 };
 
 export default CheckIn;
