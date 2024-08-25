@@ -70,8 +70,8 @@ const Create = () => {
     ];
 
     return (
-        <div className=" w-full flex items-center justify-center  min-h-screen">
-            <div className=" w-[800px] flex flex-col items-center">
+        <div className="w-full flex justify-center items-center h-screen ">
+            <div className="max-w-[800px] h-[620px]  w-full bg-white rounded-2xl p-10">
                 <Steps
                     size="small"
                     current={current}
@@ -90,7 +90,7 @@ const Create = () => {
                         },
                     ]}
                 />
-                <div className=" w-full h-[700px] flex py-10">
+                <div className="h-[500px] flex py-10">
                     {current < components.length &&
                         components[current].content(
                             current,

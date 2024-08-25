@@ -6,7 +6,7 @@ const Private = () => {
     if (token) {
         return <Outlet />;
     } else {
-        return <Navigate to="/auth/login" />;
+        return <Navigate to="/auth/register" />;
     }
 };
 

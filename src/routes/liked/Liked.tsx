@@ -1,21 +1,14 @@
-import "./Cars.css";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useEffect, useState } from "react";
 import { Car } from "../../types/dataTypes";
+import { useNavigate } from "react-router-dom";
 import gasStation from "../../images/gas-station.png";
 import CarImg from "../../images/Car.png";
 import Users from "../../images/profile-2user.png";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
-type Props = {
-    title: string;
-    data: Car[] | undefined;
-    isLoading: boolean;
-};
-
-const Cars = ({ data, title, isLoading }: Props) => {
-    const [likedCars, setLikedCars] = useState<Car[]>([]);
+const Liked = () => {
     const navigate = useNavigate();
+    const [likedCars, setLikedCars] = useState<Car[]>([]);
 
     useEffect(() => {
         const savedLikedCars = localStorage.getItem("likedCars");
@@ -47,17 +40,13 @@ const Cars = ({ data, title, isLoading }: Props) => {
     };
 
     return (
-        <div>
-            <div className="flex justify-between p-5">
-                <h2 className="card-title">{title}</h2>
-                <h2 className="card-title-link">View All</h2>
-            </div>
-
-            {isLoading ? (
-                <div>Loading</div>
-            ) : (
+        <div className="flex justify-center">
+            <div className="max-w-[1400px] w-full min-h-screen m-0-auto">
+                <h1 className="text-3xl font-bold py-5">
+                    {likedCars.length} Liked Cars
+                </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-5">
-                    {data?.map((car) => (
+                    {likedCars.map((car) => (
                         <div
                             className="card p-6 flex flex-col gap-3"
                             key={car._id}
@@ -67,10 +56,10 @@ const Cars = ({ data, title, isLoading }: Props) => {
                                     style={{
                                         color: "red",
                                         fontSize: "30px",
-                                        cursor: "pointer",
                                         position: "absolute",
                                         top: "20px",
                                         left: "250px",
+                                        cursor: "pointer",
                                     }}
                                     onClick={() => toggleLike(car)}
                                 />
@@ -129,9 +118,9 @@ const Cars = ({ data, title, isLoading }: Props) => {
                         </div>
                     ))}
                 </div>
-            )}
+            </div>
         </div>
     );
 };
 
-export default Cars;
+export default Liked;

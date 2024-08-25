@@ -1,48 +1,10 @@
-import {
-    Form,
-    FormProps,
-    // UploadFile,
-    // UploadProps,
-    Image,
-    Input,
-    InputNumber,
-    Select,
-} from "antd";
+import { Form, FormProps, Image, Input, InputNumber, Select } from "antd";
 import { useState } from "react";
 import NextBack, { Props } from "../../../../components/next-back/NextBack";
-
-type FileType = File & { preview?: string };
-
-const getBase64 = (file: FileType): Promise<string> =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = (error) => reject(error);
-    });
 
 const TechnicalInfo = ({ current, handleNext, handleBack }: Props) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
-    // const [fileList, setFileList] = useState<UploadFile[]>([]);
-
-    // const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    //     setFileList(newFileList);
-
-    // const handlePreview = async (file: UploadFile) => {
-    //     if (!file.url && !file.preview) {
-    //         file.preview = await getBase64(file.originFileObj as FileType);
-    //     }
-
-    //     setPreviewImage(file.url || (file.preview as string));
-    //     setPreviewOpen(true);
-    // };
-
-    // const uploadButton = (
-    //     <button style={{ border: 0, background: "none" }} type="button">
-    //         <div style={{ marginTop: 8 }}>Upload</div>
-    //     </button>
-    // );
 
     type FieldType = {
         engine?: string;

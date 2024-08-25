@@ -116,6 +116,15 @@ const Login = () => {
                         span: 24,
                     }}
                 >
+                    <p className="mb-5">
+                        Don't have an account?{" "}
+                        <a
+                            className="cursor-pointer text-blue-600"
+                            onClick={() => navigate("/auth/register")}
+                        >
+                            Register
+                        </a>
+                    </p>
                     <Button
                         style={{ width: "100%" }}
                         type="primary"

@@ -6,17 +6,17 @@ const Otp = () => {
     const [form] = Form.useForm();
     const [otpValue, setOtpValue] = useState("");
 
-    const onFinish = async () => {
+    const onFinish = async (values: any) => {
         try {
             const response = await fetch(
-                "http://localhost:8000/api/auth/resend-otp",
+                "http://13.51.206.62:8000/api/auth/resend-otp",
                 {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        email: "shomurodshoakbarov2@gmail.com",
+                        email: values.email,
                     }),
                 }
             );

@@ -12,9 +12,11 @@ const Cars = () => {
         navigate("/dashboard/create");
     };
 
-    const tokenCreate = () => {
-        localStorage.setItem("token", "wkhIkSKookwo88u-USjimks");
+    const token = () => {
+        const token = "uyhwujwswrdcrqsks-wswijjwnsds";
+        localStorage.setItem("token", token);
     };
+
     return (
         <div className="w-full flex justify-center bg-white border-b-[1px]">
             <nav className=" max-w-[1500px] h-[125px] w-full flex justify-between items-center px-5 ">
@@ -39,13 +41,16 @@ const Cars = () => {
                     </div>
                 </div>
                 <div className="flex gap-5 items-center">
-                    <div onClick={tokenCreate} className="cursor-pointer">
+                    <div
+                        onClick={() => navigate("/liked")}
+                        className="headerLinks"
+                    >
                         <img src={Heart} alt="" />
                     </div>
-                    <div className="cursor-pointer">
+                    <div onClick={token} className="headerLinks">
                         <img src={Notification} alt="" />
                     </div>
-                    <div onClick={navigateToSetting} className="cursor-pointer">
+                    <div onClick={navigateToSetting} className="headerLinks">
                         <img src={Setting} alt="" />
                     </div>
                     <img

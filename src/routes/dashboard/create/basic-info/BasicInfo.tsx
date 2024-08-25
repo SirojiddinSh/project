@@ -10,24 +10,11 @@ const { TextArea } = Input;
 const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
     const [form] = useForm();
     const { data: categories } = useGetCategoriesQuery();
-
     type FieldType = {
         name?: string;
-        model?: string;
-        price?: number;
-        color?: string;
-        year?: number;
-        fuel?: string;
-        transmission?: string;
-        seats?: number;
-        rent_price?: number;
-        status?: string;
-        description?: string;
-        category?: string;
     };
 
     const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-        console.log(values);
         handleNext();
     };
 
@@ -48,7 +35,7 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
         >
-            <div className="flex flex-col flex-1 justify-between gap-4 mb-20">
+            <div className="flex flex-col flex-1  justify-between gap-4 mb-20">
                 <div className="flex gap-4">
                     <Item
                         layout="vertical"
@@ -76,115 +63,19 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
                     </Item>
                 </div>
                 <div className="flex gap-4">
-                    <Item
-                        layout="vertical"
-                        label="Car price"
-                        name="price"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input type="number" />
-                    </Item>
-                    <Item
-                        layout="vertical"
-                        label="Car color"
-                        name="color"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input />
-                    </Item>
-                </div>
-                <div className="flex gap-4">
-                    <Item
-                        layout="vertical"
-                        label="Car year"
-                        name="year"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input type="number" />
-                    </Item>
-                    <Item
-                        layout="vertical"
-                        label="Car fuel"
-                        name="fuel"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input />
-                    </Item>
-                </div>
-                <div className="flex gap-4">
-                    <Item
-                        layout="vertical"
-                        label="Car transmission"
-                        name="transmission"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Select
-                            defaultValue="automatic"
-                            style={{ width: "100%" }}
-                            options={[
-                                { value: "automatic", label: "Automatic" },
-                                { value: "manual", label: "Manual" },
-                            ]}
-                        />
-                    </Item>
-                    <Item
-                        layout="vertical"
-                        label="Car seats"
-                        name="seats"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input type="number" />
-                    </Item>
-                </div>
-                <div className="flex gap-4">
-                    <Item
-                        layout="vertical"
-                        label="Rent price"
-                        name="rent_price"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input type="number" />
-                    </Item>
-                    <Item
-                        layout="vertical"
-                        label="Car category"
-                        name="category"
-                        className="flex-1"
-                        required
-                        rules={[{ required: true }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        {categories?.payload &&
-                            categories?.payload?.length > 0 && (
+                    {categories?.payload && categories?.payload?.length > 0 && (
+                        <Item
+                            layout="vertical"
+                            label="Car category"
+                            name="category"
+                            className="flex-1"
+                            required
+                            rules={[{ required: true }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                            initialValue={categories?.payload[0]._id}
+                        >
+                            {
                                 <Select
                                     defaultValue={categories?.payload[0]._id}
                                     style={{ width: "100%" }}
@@ -195,10 +86,10 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
                                         })
                                     )}
                                 />
-                            )}
-                    </Item>
-                </div>
-                <div className="flex gap-4">
+                            }
+                        </Item>
+                    )}
+
                     <Item
                         layout="vertical"
                         label="Car status"
@@ -208,6 +99,7 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
                         rules={[{ required: true }]}
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
+                        initialValue={"active"}
                     >
                         <Select
                             defaultValue="active"
@@ -234,7 +126,7 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
                             showCount
                             maxLength={100}
                             placeholder="disable resize"
-                            style={{ height: 90, resize: "none" }}
+                            style={{ resize: "none" }}
                         />
                     </Item>
                 </div>

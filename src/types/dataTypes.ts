@@ -53,3 +53,13 @@ export type FetchCategory = {
     message: string,
     payload: Category[]
 }
+
+export type UploadImages = {
+    message: string,
+    payload: string[]
+}
+
+export type UploadImage = {
+    message: string,
+    payload: string
+}

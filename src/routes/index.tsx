@@ -7,6 +7,7 @@ import Auth from "./auth/Auth";
 import Private from "../private/Private";
 import Create from "./dashboard/create/Create";
 import OTP from "./auth/otp/OTP";
+import Liked from "./liked/Liked";
 
 const RouteController = () => {
     const token = localStorage.getItem("token");
@@ -47,6 +48,10 @@ const RouteController = () => {
                     element: <Create />,
                 },
             ],
+        },
+        {
+            path: "liked",
+            element: <Liked />,
         },
     ]);
 };
