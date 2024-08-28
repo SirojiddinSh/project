@@ -22,8 +22,10 @@ const Login = () => {
             );
 
             const data = await response.json();
-
             console.log(data);
+
+            localStorage.setItem("user", JSON.stringify(data?.payload));
+            console.log(localStorage.getItem("user"));
 
             if (data?.payload && data?.payload?.accessToken) {
                 localStorage.setItem("token", data?.payload?.accessToken);

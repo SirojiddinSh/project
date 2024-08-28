@@ -5,9 +5,13 @@ import Heart from "../../images/heart.png";
 import Notification from "../../images/notification.png";
 import Setting from "../../images/setting.png";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Cars = () => {
     const navigate = useNavigate();
+    const likedCars = useSelector((state: RootState) => state.liked.likedCars);
+
     const navigateToSetting = () => {
         navigate("/dashboard/create");
     };
@@ -46,14 +50,18 @@ const Cars = () => {
                         className="headerLinks"
                     >
                         <img src={Heart} alt="" />
+                        <span className="absolute -top-1 right-[1px] text-fuchsia-700 font-semibold">
+                            {likedCars?.length}
+                        </span>
                     </div>
-                    <div onClick={token} className="headerLinks">
+                    <div className="headerLinks">
                         <img src={Notification} alt="" />
                     </div>
                     <div onClick={navigateToSetting} className="headerLinks">
                         <img src={Setting} alt="" />
                     </div>
                     <img
+                        onClick={() => navigate("/profile")}
                         className="w-[44px] h-[44px] rounded-full cursor-pointer"
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
                         alt=""

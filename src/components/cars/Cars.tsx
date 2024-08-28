@@ -6,6 +6,8 @@ import CarImg from "../../images/Car.png";
 import Users from "../../images/profile-2user.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleLike as toggleLike2 } from "../../redux/slices/liked-slice";
 
 type Props = {
     title: string;
@@ -16,6 +18,7 @@ type Props = {
 const Cars = ({ data, title, isLoading }: Props) => {
     const [likedCars, setLikedCars] = useState<Car[]>([]);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const savedLikedCars = localStorage.getItem("likedCars");
@@ -34,6 +37,7 @@ const Cars = ({ data, title, isLoading }: Props) => {
         likedCars.some((likedCar) => likedCar._id === car._id);
 
     const toggleLike = (car: Car) => {
+        dispatch(toggleLike2(car));
         let updatedLikedCars;
         if (isLiked(car)) {
             updatedLikedCars = likedCars.filter(

@@ -1,88 +1,131 @@
-import OTP from "antd/es/input/OTP";
-import { Button, Form, Input } from "antd";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Flex, Input, Typography, Button } from "antd";
+import {
+    useVerifyOtpMutation,
+    useResendOtpMutation,
+} from "../../../redux/api/auth-api";
+import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Otp = () => {
-    const [form] = Form.useForm();
-    const [otpValue, setOtpValue] = useState("");
+type OTPProps = React.ComponentProps<typeof Input.OTP>;
 
-    const onFinish = async (values: any) => {
+interface OtpProps {
+    email: string;
+}
+
+const Otp: React.FC<OtpProps> = () => {
+    const navigate = useNavigate();
+    const [resentCount, setResetCount] = useState(0);
+    const [timer, setTimer] = useState(60);
+    const [searchParams] = useSearchParams();
+    const [email, setEmail] = useState("");
+    const [otp, setOtp] = useState("");
+    const [verifyOtp, { isLoading, isError, isSuccess }] =
+        useVerifyOtpMutation();
+    const [resendOtp] = useResendOtpMutation();
+
+    const onChange: OTPProps["onChange"] = (e) => {
+        console.log(e);
+        setOtp(e);
+    };
+
+    useEffect(() => {
+        if (searchParams.get("email")) {
+            setEmail(atob(searchParams.get("email")!));
+        }
+    }, [searchParams]);
+
+    const handleSubmit = async () => {
         try {
-            const response = await fetch(
-                "http://13.51.206.62:8000/api/auth/resend-otp",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: values.email,
-                    }),
-                }
-            );
-
-            const responseText = await response.text();
-            console.log("Response Text:", responseText);
-            let data;
-            try {
-                data = JSON.parse(responseText);
-                console.log("JSON Data:", data);
-            } catch (error) {
-                console.error("This is not valid JSON:", error);
+            const response = await verifyOtp({ email, otp });
+            if (response) {
+                console.log("OTP Verified:", response);
             }
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Verification failed:", error);
         }
     };
 
-    const onFinishFailed = (errorInfo: any) => {
-        console.log(errorInfo);
+    const sharedProps: OTPProps = {
+        value: otp,
+        onChange,
     };
 
+    const handleResend = async () => {
+        resendOtp({ email });
+        setResetCount(resentCount + 1);
+        setTimer(60);
+    };
+
+    useEffect(() => {
+        let timerInterval = setInterval(() => {
+            setTimer((timer) => timer - 1);
+        }, 1000);
+
+        if (timer === 0) {
+            clearInterval(timerInterval);
+        }
+
+        return () => clearInterval(timerInterval);
+    }, [timer, resentCount]);
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate("/auth/login");
+        }
+    }, [isSuccess]);
+
+    console.log(resentCount);
     return (
-        <div>
-            <Form
-                form={form}
-                layout="vertical"
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 24 }}
-                style={{ maxWidth: 600 }}
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-            >
-                <Form.Item
-                    style={{ marginBottom: "5px" }}
-                    label="Email"
-                    name="email"
-                    rules={[
-                        { required: true, message: "Please input your email!" },
-                        {
-                            type: "email",
-                            message: "Please enter a valid email!",
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item label="Enter OTP" style={{ marginBottom: "15px" }}>
-                    <OTP
-                        length={6}
-                        size="large"
-                        value={otpValue}
-                        onChange={(otp) => setOtpValue(otp)}
-                    />
-                </Form.Item>
-
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Submit
+        <div className="w-full flex items-center justify-center">
+            <div className="w-[400px] min-h-[250px]  rounded-lg p-7 flex items-center justify-center">
+                <Flex gap="middle" align="flex-start" vertical>
+                    <div>
+                        <Typography className="text-center text-2xl">
+                            Enter One Time Password
+                        </Typography>
+                        <Typography className="text-center text-[12px] text-[gray]">
+                            We sent it to {email}
+                        </Typography>
+                    </div>
+                    <div className="w-full text-center">
+                        <Input.OTP
+                            className="w-full text-center"
+                            formatter={(str) => str.toUpperCase()}
+                            {...sharedProps}
+                        />
+                    </div>
+                    <Button
+                        type="primary"
+                        className="w-full"
+                        loading={isLoading}
+                        onClick={handleSubmit}
+                        disabled={!otp || isLoading}
+                    >
+                        Verify
                     </Button>
-                </Form.Item>
-            </Form>
+                    <Button
+                        type="primary"
+                        className="w-full"
+                        loading={isLoading}
+                        htmlType="button"
+                        onClick={handleResend}
+                        disabled={timer > 0}
+                    >
+                        Resend {timer ? "in " + timer + "s" : ""}
+                    </Button>
+                    {isError && (
+                        <Typography className="text-red-500 text-center">
+                            OTP verification failed.
+                        </Typography>
+                    )}
+                    {isSuccess && (
+                        <Typography className="text-green-500 text-center">
+                            OTP verified successfully!
+                        </Typography>
+                    )}
+                </Flex>
+            </div>
         </div>
     );
 };

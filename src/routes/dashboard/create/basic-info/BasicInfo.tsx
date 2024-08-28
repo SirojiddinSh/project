@@ -3,18 +3,30 @@ import { useForm } from "antd/es/form/Form";
 import type { FormProps } from "antd";
 import NextBack, { Props } from "../../../../components/next-back/NextBack";
 import { useGetCategoriesQuery } from "../../../../redux/api/category-api";
+import { useDispatch } from "react-redux";
+import { fillBasicInfo } from "../../../../redux/slices/form-slice";
 
 const { Item } = Form;
 const { TextArea } = Input;
 
 const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
+    const dispatch = useDispatch();
     const [form] = useForm();
     const { data: categories } = useGetCategoriesQuery();
     type FieldType = {
         name?: string;
+        category?: string;
+        description?: string;
+        status?: string;
     };
 
     const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+        dispatch(fillBasicInfo(values));
+        localStorage.setItem("basicInfo", JSON.stringify(values));
+        localStorage.setItem("name", JSON.stringify(values.name));
+        localStorage.setItem("category", JSON.stringify(values.category));
+        localStorage.setItem("description", JSON.stringify(values.description));
+        localStorage.setItem("status", JSON.stringify(values.status));
         handleNext();
     };
 
@@ -39,7 +51,7 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
                 <div className="flex gap-4">
                     <Item
                         layout="vertical"
-                        label="Car company"
+                        label="Car name"
                         name="name"
                         className="flex-1"
                         required
@@ -80,7 +92,7 @@ const BasicInfo = ({ current, handleNext, handleBack }: Props) => {
                                     defaultValue={categories?.payload[0]._id}
                                     style={{ width: "100%" }}
                                     options={categories?.payload.map(
-                                        (category) => ({
+                                        (category: any) => ({
                                             value: category._id,
                                             label: category.name,
                                         })

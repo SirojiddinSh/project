@@ -42,82 +42,91 @@ const Liked = () => {
     return (
         <div className="flex justify-center">
             <div className="max-w-[1400px] w-full min-h-screen m-0-auto">
-                <h1 className="text-3xl font-bold py-5">
-                    {likedCars.length} Liked Cars
-                </h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-5">
-                    {likedCars.map((car) => (
-                        <div
-                            className="card p-6 flex flex-col gap-3"
-                            key={car._id}
-                        >
-                            {isLiked(car) ? (
-                                <AiFillHeart
-                                    style={{
-                                        color: "red",
-                                        fontSize: "30px",
-                                        position: "absolute",
-                                        top: "20px",
-                                        left: "250px",
-                                        cursor: "pointer",
-                                    }}
-                                    onClick={() => toggleLike(car)}
-                                />
-                            ) : (
-                                <AiOutlineHeart
-                                    style={{
-                                        color: "red",
-                                        fontSize: "30px",
-                                        position: "absolute",
-                                        top: "20px",
-                                        left: "250px",
-                                        cursor: "pointer",
-                                    }}
-                                    onClick={() => toggleLike(car)}
-                                />
-                            )}
-                            <div>
-                                <h2 className="card-title">{car.name}</h2>
-                                <h3 className="card-subtitle">{car.fuel}</h3>
-                            </div>
-                            <img
-                                onClick={() => moveToSingle(car)}
-                                className="card-img"
-                                src={car.thumbnail}
-                                alt=""
-                                width={230}
-                                height={130}
-                            />
+                {likedCars.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-5">
+                        {likedCars.map((car) => (
                             <div
-                                onClick={() => moveToSingle(car)}
-                                className="img-opacity"
-                            ></div>
-                            <div className="info">
-                                <div className="flex gap-1">
-                                    <img src={gasStation} alt="" width={24} />
-                                    <h3>{car.capacity_fuel}</h3>
+                                className="card p-6 flex flex-col gap-3"
+                                key={car._id}
+                            >
+                                {isLiked(car) ? (
+                                    <AiFillHeart
+                                        style={{
+                                            color: "red",
+                                            fontSize: "30px",
+                                            position: "absolute",
+                                            top: "20px",
+                                            left: "250px",
+                                            cursor: "pointer",
+                                        }}
+                                        onClick={() => toggleLike(car)}
+                                    />
+                                ) : (
+                                    <AiOutlineHeart
+                                        style={{
+                                            color: "red",
+                                            fontSize: "30px",
+                                            position: "absolute",
+                                            top: "20px",
+                                            left: "250px",
+                                            cursor: "pointer",
+                                        }}
+                                        onClick={() => toggleLike(car)}
+                                    />
+                                )}
+                                <div>
+                                    <h2 className="card-title">{car.name}</h2>
+                                    <h3 className="card-subtitle">
+                                        {car.fuel}
+                                    </h3>
                                 </div>
-                                <div className="flex gap-1">
-                                    <img src={CarImg} alt="" width={24} />
-                                    <h3>Manual</h3>
+                                <img
+                                    onClick={() => moveToSingle(car)}
+                                    className="card-img"
+                                    src={car.thumbnail}
+                                    alt=""
+                                    width={230}
+                                    height={130}
+                                />
+                                <div
+                                    onClick={() => moveToSingle(car)}
+                                    className="img-opacity"
+                                ></div>
+                                <div className="info">
+                                    <div className="flex gap-1">
+                                        <img
+                                            src={gasStation}
+                                            alt=""
+                                            width={24}
+                                        />
+                                        <h3>{car.capacity_fuel}</h3>
+                                    </div>
+                                    <div className="flex gap-1">
+                                        <img src={CarImg} alt="" width={24} />
+                                        <h3>Manual</h3>
+                                    </div>
+                                    <div className="flex gap-1">
+                                        <img src={Users} alt="" width={24} />
+                                        <h3>{car.seats} People</h3>
+                                    </div>
                                 </div>
-                                <div className="flex gap-1">
-                                    <img src={Users} alt="" width={24} />
-                                    <h3>{car.seats} People</h3>
+                                <div className=" card-footer flex justify-between">
+                                    <h2 className="card-price">
+                                        ${car.price}/{" "}
+                                        <span>day {car.rent_price}</span>
+                                    </h2>
+                                    <button className="card-btn-RentNow">
+                                        Rent Now
+                                    </button>
                                 </div>
                             </div>
-                            <div className=" card-footer flex justify-between">
-                                <h2 className="card-price">
-                                    ${car.price}/{" "}
-                                    <span>day {car.rent_price}</span>
-                                </h2>
-                                <button className="card-btn-RentNow">
-                                    Rent Now
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                ) : (
+                    <h1 className="text-center font-medium text-2xl">
+                        No liked cars
+                    </h1>
+                )}
             </div>
         </div>
     );

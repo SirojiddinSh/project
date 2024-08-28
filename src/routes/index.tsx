@@ -6,8 +6,9 @@ import Register from "./auth/register/Register";
 import Auth from "./auth/Auth";
 import Private from "../private/Private";
 import Create from "./dashboard/create/Create";
-import OTP from "./auth/otp/OTP";
+import Otp from "./auth/otp/Otp";
 import Liked from "./liked/Liked";
+import Profile from "./profile/Profile";
 
 const RouteController = () => {
     const token = localStorage.getItem("token");
@@ -34,8 +35,8 @@ const RouteController = () => {
                     element: <Register />,
                 },
                 {
-                    path: "otp",
-                    element: <OTP />,
+                    path: "verify-otp",
+                    element: <Otp />,
                 },
             ],
         },
@@ -52,6 +53,10 @@ const RouteController = () => {
         {
             path: "liked",
             element: <Liked />,
+        },
+        {
+            path: "profile",
+            element: <Profile />,
         },
     ]);
 };

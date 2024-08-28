@@ -2,7 +2,6 @@ import "./Home.css";
 import Cars from "../../components/cars/Cars";
 import { useGetCarsQuery } from "../../redux/api/car-api";
 import Container from "../../components/container/Container";
-import Mark from "../../images/mark.png";
 import Swap from "../../images/Swap.png";
 
 const Home = () => {
@@ -56,7 +55,7 @@ const Home = () => {
                 <div className="flex justify-between items-center">
                     <div className="pickup">
                         <div className="flex gap-1 items-center w-full ml-10">
-                            <img src={Mark} alt="" />
+                            <input type="radio" className="cursor-pointer" />
                             <h3 className="pickup-title">Pick-Up</h3>
                         </div>
                         <div className="flex gap-20">
@@ -79,7 +78,7 @@ const Home = () => {
                     </div>
                     <div className="dropOff">
                         <div className="flex gap-1 items-center w-full ml-10">
-                            <img src={Mark} alt="" />
+                            <input type="radio" className="cursor-pointer" />
                             <h3 className="pickup-title">Drop-Off</h3>
                         </div>
                         <div className="flex gap-20">

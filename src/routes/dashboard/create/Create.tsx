@@ -65,7 +65,13 @@ const Create = () => {
         },
         {
             id: 3,
-            content: () => <CheckIn />,
+            content: () => (
+                <CheckIn
+                    current={current}
+                    handleNext={handleNext}
+                    handleBack={handleBack}
+                />
+            ),
         },
     ];
 
@@ -77,10 +83,10 @@ const Create = () => {
                     current={current}
                     items={[
                         {
-                            title: "Basic info",
+                            title: "Visual info",
                         },
                         {
-                            title: "Visual Info",
+                            title: "Basic Info",
                         },
                         {
                             title: "Technical Info",

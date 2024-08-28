@@ -1,38 +1,35 @@
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useSignUpMutation } from "../../../redux/api/auth-api";
+import type { FormProps } from "antd";
+import { useEffect } from "react";
+
+type FieldType = {
+    first_name: string;
+    email: string;
+    password: string;
+};
 
 const Register = () => {
+    const [signUp, { data, isSuccess }] = useSignUpMutation();
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
-    const onFinish = async (values: any) => {
-        try {
-            const response = await fetch(
-                "http://13.51.206.62:8000/api/auth/sign-up",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        first_name: values.first_name,
-                        email: values.email,
-                        password: values.password,
-                    }),
-                }
-            );
-            const data = await response.json();
-            console.log(data);
+    const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+        console.log(values);
 
-            navigate("/auth/otp");
-        } catch (error) {
-            console.log("Xato yuz berdi:", error);
-        }
-
-        form.resetFields();
+        signUp(values);
     };
 
-    const onFinishFailed = (errorInfo: any) => {
+    useEffect(() => {
+        if (isSuccess) {
+            navigate(`/auth/verify-otp?email=${btoa(data.payload.email)}`);
+        }
+    }, [isSuccess]);
+
+    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+        errorInfo
+    ) => {
         console.log("Failed:", errorInfo);
     };
 
@@ -68,7 +65,7 @@ const Register = () => {
                 >
                     Register
                 </h1>
-                <Form.Item
+                <Form.Item<FieldType>
                     style={{ marginBottom: "5px" }}
                     label="First name"
                     name="first_name"
@@ -82,7 +79,7 @@ const Register = () => {
                     <Input />
                 </Form.Item>
 
-                <Form.Item
+                <Form.Item<FieldType>
                     style={{ marginBottom: "5px" }}
                     label="Email"
                     name="email"
@@ -100,7 +97,7 @@ const Register = () => {
                     <Input />
                 </Form.Item>
 
-                <Form.Item
+                <Form.Item<FieldType>
                     style={{ marginBottom: "15px" }}
                     label="Password"
                     name="password"

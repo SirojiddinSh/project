@@ -5,22 +5,28 @@ import {
     useUploadMultipleFilesMutation,
     useUploadSingleFileMutation,
 } from "../../../../redux/api/upload-api";
+import { useDispatch } from "react-redux";
+import { fillBasicInfo } from "../../../../redux/slices/form-slice";
+import { fillVisualInfo } from "../../../../redux/slices/form-slice";
 
 type FieldType = {
     name?: string;
 };
 
 const VisualInfo = ({ current, handleNext, handleBack }: Props) => {
+    const dispatch = useDispatch();
     const [uploadMultipleFiles, { data: multipleFiles }] =
         useUploadMultipleFilesMutation();
     const [uploadSingleFile, { data: singleFile }] =
         useUploadSingleFileMutation();
 
     const [imageUrls, setImageUrls] = useState<string[]>([]);
-
     const [thumbnailUrl, setThumbnailUrl] = useState<string>("");
 
     const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+        dispatch(
+            fillVisualInfo({ images: imageUrls, thumbnail: thumbnailUrl })
+        );
         handleNext();
         console.log(values);
     };
@@ -44,6 +50,8 @@ const VisualInfo = ({ current, handleNext, handleBack }: Props) => {
             formData.append("files", fileList[i].originFileObj);
         }
 
+        formData.append("file", file);
+
         uploadMultipleFiles(formData);
     };
 
@@ -52,21 +60,22 @@ const VisualInfo = ({ current, handleNext, handleBack }: Props) => {
         formData.append("file", file.originFileObj);
 
         uploadSingleFile(formData);
+        console.log(file);
     };
 
     useEffect(() => {
-        if (multipleFiles?.payload && multipleFiles?.payload?.length > 0) {
+        if (multipleFiles?.payload) {
             setImageUrls(multipleFiles?.payload);
+            dispatch(fillBasicInfo({ images: multipleFiles?.payload }));
         }
     }, [multipleFiles]);
 
     useEffect(() => {
         if (singleFile?.payload) {
             setThumbnailUrl(singleFile?.payload);
+            dispatch(fillBasicInfo({ thumbnail: singleFile?.payload }));
         }
     }, [singleFile]);
-
-    console.log(imageUrls, thumbnailUrl, singleFile);
 
     return (
         <Form

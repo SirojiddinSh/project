@@ -1,3 +1,4 @@
+// liked-slice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Car } from "../../types/dataTypes";
 
@@ -6,7 +7,7 @@ interface LikedState {
 }
 
 const initialState: LikedState = {
-    likedCars: [],
+    likedCars: JSON.parse(localStorage.getItem("likedCars") || "[]"),
 };
 
 const likedSlice = createSlice({
@@ -22,6 +23,8 @@ const likedSlice = createSlice({
             } else {
                 state.likedCars.push(action.payload);
             }
+            // localStorage'ga saqlash
+            localStorage.setItem("likedCars", JSON.stringify(state.likedCars));
         },
     },
 });
